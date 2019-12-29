@@ -1,0 +1,40 @@
+<template>
+	<view class="evan-step-show">
+		<evan-steps :active="2">
+			<evan-step title="第一步" description="详情详情详情详情"></evan-step>
+			<evan-step title="第二步" description="详情详情详情详情"></evan-step>
+			<evan-step title="第三步" description="特别长特别长特别长特别长特别长特别长特别长特别长特别长特别长特别长特别长特别长"></evan-step>
+		</evan-steps>
+	</view>
+</template>
+
+<script>
+	import EvanSteps from '@/components/evan-steps/evan-steps.vue'
+	import EvanStep from '@/components/evan-steps/evan-step.vue'
+	import UniIcons from '@/components/uni-icons/uni-icons.vue'
+	import EvanIcons from '@/components/evan-icons/evan-icons.vue'
+	export default {
+		components: {
+			EvanSteps,
+			EvanStep,
+			UniIcons,
+			EvanIcons
+		},
+		data() {
+			return {
+
+			}
+		},
+		onLoad() {
+
+		},
+		methods: {
+		}
+	}
+</script>
+
+<style>
+	.evan-step-show {
+		padding: 20px;
+	}
+</style>
