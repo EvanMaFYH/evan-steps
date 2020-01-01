@@ -40,7 +40,12 @@
 
 <style lang="scss">
 	.evan-steps {
+		/* #ifdef APP-NVUE */
+		flex: 1;
+		/* #endif */
+		/* #ifndef APP-NVUE */
 		width: 100%;
+		/* #endif */
 	}
 
 	.evan-steps--vertical {}
@@ -51,11 +56,12 @@
 		/* #endif */
 		flex-direction: row;
 		align-items: flex-start;
-		
+
 		/* #ifndef APP-NVUE */
 		evan-step {
 			flex: 1;
 		}
+
 		/* #endif */
 	}
 </style>

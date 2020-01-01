@@ -1,9 +1,53 @@
 <template>
 	<view class="evan-step-show">
-		<evan-steps :active="2">
+		<view class="evan-step-show__title">
+			<text class="evan-step-show__title__item">基础用法</text>
+		</view>
+		<evan-steps :active="1">
 			<evan-step title="第一步" description="详情详情详情详情"></evan-step>
 			<evan-step title="第二步" description="详情详情详情详情"></evan-step>
-			<evan-step title="第三步" description="特别长特别长特别长特别长特别长特别长特别长特别长特别长特别长特别长特别长特别长"></evan-step>
+			<evan-step title="第三步" description="详情详情详情详情"></evan-step>
+		</evan-steps>
+		
+		<view class="evan-step-show__title">
+			<text class="evan-step-show__title__item">自定义主题色</text>
+		</view>
+		
+		<evan-steps :active="1" primaryColor="green">
+			<evan-step title="第一步" description="详情详情详情详情"></evan-step>
+			<evan-step title="第二步" description="详情详情详情详情"></evan-step>
+			<evan-step title="第三步" description="详情详情详情详情"></evan-step>
+		</evan-steps>
+		
+		<view class="evan-step-show__title">
+			<text class="evan-step-show__title__item">自定义status</text>
+		</view>
+		
+		<evan-steps :active="1">
+			<evan-step title="第一步" description="详情详情详情详情"></evan-step>
+			<evan-step title="第二步" status="error" description="详情详情详情详情"></evan-step>
+			<evan-step title="第三步" description="详情详情详情详情"></evan-step>
+		</evan-steps>
+		
+		<view class="evan-step-show__title">
+			<text class="evan-step-show__title__item">自定义icon</text>
+		</view>
+		
+		<evan-steps :active="1">
+			<evan-step title="第一步" description="详情详情详情详情"></evan-step>
+			<evan-step title="第二步" description="详情详情详情详情"></evan-step>
+			<evan-step title="第三步" description="详情详情详情详情"></evan-step>
+			<evan-step icon="home" title="自定义icon(来自uni-icons)" description="详情详情详情详情"></evan-step>
+		</evan-steps>
+		
+		<view class="evan-step-show__title">
+			<text class="evan-step-show__title__item">水平方向</text>
+		</view>
+		
+		<evan-steps :active="1" direction="horizontal">
+			<evan-step title="第一步" description="详情详情详情详情"></evan-step>
+			<evan-step title="第二步" description="详情详情详情详情"></evan-step>
+			<evan-step icon="home" title="自定义icon" description="详情详情详情详情"></evan-step>
 		</evan-steps>
 	</view>
 </template>
@@ -33,8 +77,16 @@
 	}
 </script>
 
-<style>
+<style lang="scss" scoped>
 	.evan-step-show {
 		padding: 20px;
+	}
+	.evan-step-show__title{
+		padding: 10px 0;
+	}
+	.evan-step-show__title__item{
+		font-size: 16px;
+		color: #333;
+		font-weight: bold;
 	}
 </style>

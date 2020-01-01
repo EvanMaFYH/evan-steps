@@ -7,10 +7,10 @@
 			<uni-icons :type="icon" size="22" :color="customIconColor" class="evan-step__custom-icon" :class="'evan-step__custom-icon--'+direction"></uni-icons>
 		</view>
 		<view v-else class="evan-step__circle" :class="['evan-step__circle--'+direction,'evan-step__circle--'+currentStatus]"
-		 :style="{borderColor:circleStyle.borderColor,backgroundColor:circleStyle.backgroundColor,color:circleStyle.color}">
-			<uni-icons v-if="currentStatus==='finish'" type="checkmarkempty" :color="primaryColor" size="18"></uni-icons>
-			<uni-icons v-else-if="currentStatus==='error'" type="closeempty" color="#fff" size="18"></uni-icons>
-			<text class="evan-step__circle__text" :class="'evan-step__circle__text--'+currentStatus" v-else>{{index+1}}</text>
+		 :style="{borderColor:circleStyle.borderColor,backgroundColor:circleStyle.backgroundColor}">
+			<uni-icons v-if="currentStatus==='finish'" type="checkmarkempty" :color="primaryColor" :size="circleIconSize"></uni-icons>
+			<uni-icons v-else-if="currentStatus==='error'" type="closeempty" color="#fff" :size="circleIconSize"></uni-icons>
+			<text class="evan-step__circle__text" :class="'evan-step__circle__text--'+currentStatus" :style="{color:circleStyle.color}" v-else>{{index+1}}</text>
 		</view>
 		<view class="evan-step__content" :class="'evan-step__content--'+direction">
 			<text class="evan-step__content__title" :class="'evan-step__content__title--'+direction" :style="{color:titleColor}">{{title}}</text>
@@ -199,17 +199,12 @@
 		data() {
 			return {
 				index: null,
-				customizeIcon: false
+				customizeIcon: false,
+				circleIconSize: 20
 			}
 		},
 		methods: {
 			getParent() {
-				// // #ifdef H5
-				// return this.$parent.$options.parent
-				// // #endif
-				// // #ifndef H5
-				// return this.$parent
-				// // #endif
 				let parent = this.$parent
 				let parentName = parent.$options.name
 				while (parentName !== 'EvanSteps') {
@@ -228,6 +223,15 @@
 				description: this.description,
 				status: this.status
 			})
+			// #ifndef APP-PLUS
+			this.circleIconSize = 20
+			// #endif
+			// #ifdef APP-PLUS
+			this.circleIconSize = 24
+			// #endif
+			// #ifdef APP-NVUE
+			this.circleIconSize = 20
+			// #endif
 		}
 	}
 </script>
@@ -282,7 +286,7 @@
 	.evan-step__line--vertical {
 		position: absolute;
 		width: 22px;
-		height: 100%;
+		bottom: 0;
 		top: 0;
 		left: 0;
 		padding: 28px 0 6px 0;
@@ -295,26 +299,32 @@
 
 	.evan-step__line--vertical__inner {
 		width: 1px;
-		height: 100%;
+		flex: 1;
 	}
 
 	.evan-step__line--horizontal {
 		position: absolute;
-		width: 100%;
 		height: 22px;
 		top: 0;
 		left: 39px;
+		/* #ifdef APP-NVUE */
+		right: -39px;
+		/* #endif */
 		padding: 0 6px 0 28px;
 		/* #ifndef APP-NVUE */
 		display: flex;
+		width: 100%;
 		/* #endif */
 		flex-direction: row;
 		align-items: center;
 	}
 
 	.evan-step__line--horizontal__inner {
+		/* #ifndef APP-NVUE */
 		width: 100%;
+		/* #endif */
 		height: 1px;
+		flex:1;
 	}
 
 	.evan-step__circle {
@@ -374,7 +384,12 @@
 
 	.evan-step__content__title {
 		font-size: 16px;
+		/* #ifndef APP-NVUE */
 		margin-bottom: 3px;
+		/* #endif */
+		/* #ifdef APP-NVUE */
+		margin-bottom: 8px;
+		/* #endif */
 		font-weight: 500;
 	}
 
@@ -383,7 +398,9 @@
 	}
 
 	.evan-step__content__title--vertical {
+		/* #ifndef APP-NVUE */
 		width: 100%;
+		/* #endif */
 	}
 
 	.evan-step__content__description {
@@ -391,8 +408,13 @@
 	}
 
 	.evan-step__content__description--vertical {
+		/* #ifndef APP-NVUE */
 		padding-bottom: 12px;
 		width: 100%;
+		/* #endif */
+		/* #ifdef APP-NVUE */
+		padding-bottom: 17px;
+		/* #endif */
 	}
 
 	.evan-step__content__description--horizontal {
