@@ -43,6 +43,11 @@
 					<evan-icons type="telegram" size="22" color="#ccc"></evan-icons>
 				</template>
 			</evan-step>
+			<evan-step title="完全自定义icon图片" description="详情详情详情详情">
+				<template v-slot:icon>
+					<image class="evan-step-show__show" src="/static/logo.png"></image>
+				</template>
+			</evan-step>
 		</evan-steps>
 		
 		<view class="evan-step-show__title">
@@ -100,6 +105,11 @@
 				color: #333;
 				font-weight: bold;
 			}
+		}
+		&__show{
+			width: 22px;
+			height: 22px;
+			display: block;
 		}
 	}
 </style>

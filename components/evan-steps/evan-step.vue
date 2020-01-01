@@ -81,7 +81,7 @@
 				if (this.index < active) {
 					return 'finish'
 				} else if (this.index === active) {
-					return 'process'
+					return parent.status
 				} else {
 					return 'wait'
 				}
