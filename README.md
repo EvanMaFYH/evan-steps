@@ -2,15 +2,15 @@
 uniapp步骤组件，支持自定义icon   
 测试过微信小程序、app（包括nvue模式）、h5
 
-### 用法
+### 1.用法
 参考[github demo](https://github.com/EvanMaFYH/evan-steps)中的用法
 
-### 注意点
+### 2.注意点
 
 #### 1.水平模式下不要超过三个步骤
 #### 2.nvue模式下目前不支持slot完全自定义icon，只支持通过icon参数的uni-icons的图标
 
-### 还存在的问题（坐等大佬出现( ^_^ )）   
+### 3.还存在的问题（坐等大佬出现( ^_^ )）   
 
 #### 1.在nvue模式下description过长step无法自动撑开（理论上高度应该自动撑开，没找到什么原因），因此是通过高度计算直接给height赋值实现，不是很理想
 
