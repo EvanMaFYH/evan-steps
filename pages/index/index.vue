@@ -4,8 +4,8 @@
 			<text class="evan-step-show__title__item">基础用法</text>
 		</view>
 		<evan-steps :active="1">
-			<evan-step title="第一步" description="详情详情详情详情"></evan-step>
-			<evan-step title="第二步" description="详情详情详情详情"></evan-step>
+			<evan-step title="第一步"></evan-step>
+			<evan-step title="第二步" description="详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情"></evan-step>
 			<evan-step title="第三步" description="详情详情详情详情"></evan-step>
 		</evan-steps>
 		

@@ -10,11 +10,13 @@
 		 :style="{borderColor:circleStyle.borderColor,backgroundColor:circleStyle.backgroundColor}">
 			<uni-icons v-if="currentStatus==='finish'" type="checkmarkempty" :color="primaryColor" :size="circleIconSize"></uni-icons>
 			<uni-icons v-else-if="currentStatus==='error'" type="closeempty" color="#fff" :size="circleIconSize"></uni-icons>
-			<text class="evan-step__circle__text" :class="'evan-step__circle__text--'+currentStatus" :style="{color:circleStyle.color}" v-else>{{index+1}}</text>
+			<text class="evan-step__circle__text" :class="'evan-step__circle__text--'+currentStatus" :style="{color:circleStyle.color}"
+			 v-else>{{index+1}}</text>
 		</view>
-		<view class="evan-step__content" :class="'evan-step__content--'+direction">
-			<text class="evan-step__content__title" :class="'evan-step__content__title--'+direction" :style="{color:titleColor}">{{title}}</text>
-			<text class="evan-step__content__description" :class="'evan-step__content__description--'+direction" :style="{color:descriptionColor}">{{description}}</text>
+		<view class="evan-step__content" :class="'evan-step__content--'+direction" :style="{height:contentHeight}">
+			<text ref="content" class="evan-step__content__title" :class="'evan-step__content__title--'+direction" :style="{color:titleColor}">{{title}}</text>
+			<text ref="description" v-if="description" class="evan-step__content__description" :class="'evan-step__content__description--'+direction"
+			 :style="{color:descriptionColor}">{{description}}</text>
 		</view>
 		<view class="evan-step__line" :class="'evan-step__line--'+direction" v-if="!isLast">
 			<view :class="'evan-step__line--'+direction+'__inner'" :style="{backgroundColor:lineColor}"></view>
@@ -194,13 +196,30 @@
 					default:
 						return this.primaryColor
 				}
+			},
+			contentHeight() {
+				// #ifdef APP-NVUE
+				if (this.direction === 'vertical') {
+					if (this.titleHeight + this.descriptionHeight < 35) {
+						return '60px'
+					}
+					return this.titleHeight + this.descriptionHeight + 25 + 'px'
+				} else {
+					return 'auto'
+				}
+				// #endif
+				// #ifndef APP-NVUE
+				return 'auto'
+				// #endif
 			}
 		},
 		data() {
 			return {
 				index: null,
 				customizeIcon: false,
-				circleIconSize: 20
+				circleIconSize: 20,
+				titleHeight: 0,
+				descriptionHeight: 0
 			}
 		},
 		methods: {
@@ -231,6 +250,28 @@
 			// #endif
 			// #ifdef APP-NVUE
 			this.circleIconSize = 20
+			// TODO nvue模式下description过长时高度无法自动撑开（目前没找到原因），因此暂时通过计算高度方式来直接给height赋值
+			if (this.direction === 'vertical') {
+				this.$nextTick(() => {
+					const dom = weex.requireModule('dom')
+					dom.getComponentRect(this.$refs.title, option => {
+						if (option) {
+							const size = option.size
+							if (size) {
+								this.titleHeight = size.height
+							}
+						}
+					})
+					dom.getComponentRect(this.$refs.description, option => {
+						if (option) {
+							const size = option.size
+							if (size) {
+								this.descriptionHeight = size.height
+							}
+						}
+					})
+				})
+			}
 			// #endif
 		}
 	}
@@ -324,7 +365,7 @@
 		width: 100%;
 		/* #endif */
 		height: 1px;
-		flex:1;
+		flex: 1;
 	}
 
 	.evan-step__circle {
@@ -380,6 +421,9 @@
 
 	.evan-step__content--vertical {
 		flex: 1;
+		/* #ifndef APP-NVUE */
+		min-height: 60px;
+		/* #endif */
 	}
 
 	.evan-step__content__title {
