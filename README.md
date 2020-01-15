@@ -8,7 +8,8 @@ uniapp步骤组件，支持自定义icon
 ### 2.注意点
 
 #### 1.水平模式下不要超过三个步骤
-#### 2.nvue模式下目前不支持slot完全自定义icon，只支持通过icon参数的uni-icons的图标
+
+#### 2.nvue下通过slot自定义icon使用slot="icon"而不要使用v-slot:icon
 
 ### 3.还存在的问题（坐等大佬出现( ^_^ )）   
 

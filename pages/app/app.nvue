@@ -37,6 +37,11 @@
 			<evan-step title="第二步" description="详情详情详情详情"></evan-step>
 			<evan-step title="第三步" description="详情详情详情详情"></evan-step>
 			<evan-step icon="home" title="自定义icon(来自uni-icons)" description="详情详情详情详情"></evan-step>
+			<evan-step title="完全自定义icon" description="详情详情详情详情">
+				<template slot="icon">
+					<evan-icons type="telegram" size="22" color="#ccc"></evan-icons>
+				</template>
+			</evan-step>
 		</evan-steps>
 		
 		<view class="evan-step-show__title">
